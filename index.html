@@ -3,78 +3,697 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCP-8374 - The Imaginary Teddy Bear</title>
-<meta name="description" content="SCP-8374: The Imaginary Teddy Bear. A fan-made SCP Foundation containment file.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101010">
+<meta name="description" content="SCP-8374: The Imaginary Teddy Bear. Fan-made fictional SCP archive.">
+<title>SCP-8374 | Classified Archive</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#111;color:#ddd;font-family:Arial,sans-serif;line-height:1.6}
-header{background:#850d16;padding:22px 16px;border-bottom:4px solid #b72a32}
-header h1{margin:0;color:white;font-size:26px;letter-spacing:2px}
-header p{margin:4px 0 0;color:#ffdede}
-nav{background:#222;padding:12px 16px;border-bottom:1px solid #444;color:#bbb;font-size:13px}
-main{max-width:850px;margin:25px auto;padding:0 16px}
-.warning{border:1px solid #b72a32;background:#291214;padding:14px;margin-bottom:22px;color:#ffb5b5}
-h2{color:#f04b55;border-bottom:1px solid #593034;padding-bottom:6px;margin-top:28px}
-h3{color:#eee}
-.classification{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0}
-.cell{background:#242424;border:1px solid #444;padding:12px;text-align:center}
-.cell strong{display:block;color:#f04b55;font-size:12px}
-.teddy{margin:22px auto;width:170px;height:190px;position:relative}
-.ear{position:absolute;top:0;width:55px;height:60px;border-radius:50%;background:#765039;border:5px solid #a57b54}
-.ear.left{left:15px}.ear.right{right:15px}
-.head{position:absolute;top:20px;left:15px;width:140px;height:125px;border-radius:48%;background:#765039;border:5px solid #a57b54;z-index:1}
-.eye{position:absolute;top:40px;width:17px;height:23px;border-radius:50%;background:#fff;box-shadow:0 0 10px #ff3030}
-.eye:after{content:"";display:block;width:7px;height:7px;border-radius:50%;background:#a00;margin:8px auto}
-.eye.left{left:35px}.eye.right{right:35px}
-.muzzle{position:absolute;left:43px;top:72px;width:45px;height:32px;border-radius:50%;background:#b38b68}
-.nose{position:absolute;top:79px;left:59px;width:14px;height:10px;background:#181818;border-radius:50%;z-index:2}
-.bodybear{position:absolute;bottom:0;left:37px;width:96px;height:80px;background:#765039;border-radius:45%;border:5px solid #a57b54}
-.caption{text-align:center;color:#999;font-size:12px}
-blockquote{border-left:3px solid #b72a32;margin:12px 0;padding:8px 15px;background:#1d1d1d;font-style:italic}
-footer{margin-top:40px;border-top:1px solid #444;padding:20px 0;color:#888;font-size:12px}
-@media(max-width:480px){.classification{grid-template-columns:1fr}.cell{text-align:left}.cell strong{display:inline;margin-right:8px}}
+:root {
+  --bg: #0d0e10;
+  --panel: #17191c;
+  --panel2: #202226;
+  --red: #c52c35;
+  --text: #e6e6e6;
+  --muted: #92969e;
+  --border: #383a40;
+  --green: #7ee0a1;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button {
+  cursor: pointer;
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  padding: 10px 13px;
+  border-radius: 3px;
+}
+button:hover { border-color: var(--red); }
+a { color: #ff858a; }
+header {
+  background: #171719;
+  border-bottom: 4px solid var(--red);
+  padding: 16px;
+}
+.header-inner {
+  max-width: 960px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 23px;
+}
+.logo span { color: var(--red); }
+.header-right {
+  text-align: right;
+  font-size: 11px;
+  color: var(--muted);
+}
+main {
+  width: min(960px, 100%);
+  padding: 20px 14px 50px;
+  margin: auto;
+}
+.notice {
+  border: 1px solid #87343a;
+  background: #281719;
+  color: #ffb9bd;
+  padding: 12px;
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+.hero {
+  text-align: center;
+  padding: 23px 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(140deg, #202125, #121315);
+  border-radius: 5px;
+}
+.eyebrow {
+  color: #ff797f;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+h1 {
+  margin: 7px 0 0;
+  font-size: clamp(30px, 7vw, 48px);
+  line-height: 1.2;
+}
+.subtitle { color: var(--muted); }
+.bear-room {
+  height: 215px;
+  display: grid;
+  place-items: center;
+  margin: 18px auto;
+  max-width: 510px;
+  overflow: hidden;
+  border: 1px solid #503237;
+  background: radial-gradient(ellipse, #492326, #201a1e 53%, #111214);
+  position: relative;
+}
+.bear-room::after {
+  content: "";
+  position: absolute;
+  bottom: 16px;
+  width: 145px;
+  height: 13px;
+  border-radius: 50%;
+  background: #0008;
+  filter: blur(5px);
+}
+.bear {
+  position: relative;
+  z-index: 1;
+  width: 112px;
+  height: 122px;
+  background: #795039;
+  border-radius: 47% 47% 42% 42%;
+  box-shadow: inset -12px -8px 0 #4e3228, 0 0 20px #0007;
+  animation: float 4s ease-in-out infinite;
+}
+.ear {
+  position: absolute;
+  width: 43px;
+  height: 43px;
+  top: -16px;
+  border: 7px solid #58392b;
+  background: #795039;
+  border-radius: 50%;
+}
+.ear.left { left: -5px; }
+.ear.right { right: -5px; }
+.eye {
+  position: absolute;
+  top: 38px;
+  height: 17px;
+  width: 13px;
+  background: #050505;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #000;
+}
+.eye.left { left: 29px; }
+.eye.right { right: 29px; }
+.muzzle {
+  position: absolute;
+  top: 61px;
+  left: 32px;
+  width: 48px;
+  height: 37px;
+  border-radius: 50%;
+  background: #b38b6c;
+}
+.nose {
+  position: absolute;
+  top: 8px;
+  left: 17px;
+  width: 14px;
+  height: 10px;
+  border-radius: 50%;
+  background: #100d0d;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 15px 0;
+}
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 12px 5px;
+  text-align: center;
+}
+.stat small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.stat strong { font-size: 13px; }
+.red { color: #ff777d; }
+.green { color: var(--green); }
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+.tools button { flex: 1 1 120px; }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+nav a {
+  text-decoration: none;
+  padding: 8px 11px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+section {
+  margin: 16px 0;
+  padding: 19px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  scroll-margin-top: 12px;
+}
+h2 {
+  font-size: 19px;
+  margin: 0 0 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 9px;
+}
+h2 span { color: var(--red); margin-right: 7px; }
+p { margin: 10px 0; }
+li { margin: 7px 0; }
+.alert {
+  border-left: 4px solid var(--red);
+  background: #281719;
+  padding: 12px;
+  margin: 13px 0;
+}
+.record {
+  padding: 14px;
+  margin: 12px 0;
+  background: #101113;
+  border: 1px solid #303238;
+}
+.record-head {
+  color: #ff9298;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.record p:last-child { margin-bottom: 0; }
+.speaker { color: #ff9ba1; font-weight: bold; }
+input {
+  width: 100%;
+  background: #101113;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 12px;
+  outline: none;
+}
+input:focus { border-color: var(--red); }
+#searchResult { color: var(--muted); font-size: 13px; }
+details {
+  border: 1px solid var(--border);
+  background: #121315;
+  margin: 10px 0;
+  padding: 12px;
+}
+summary { cursor: pointer; color: #ff969b; font-weight: bold; }
+details p { color: var(--text); }
+.terminal {
+  background: #080909;
+  color: var(--green);
+  padding: 14px;
+  border: 1px solid #254a32;
+  font-family: monospace;
+  overflow-wrap: anywhere;
+}
+.terminal p { margin: 5px 0; }
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px 14px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.breach-mode {
+  --red: #ff101c;
+  --panel: #241013;
+  --border: #79242a;
+}
+.breach-mode header {
+  animation: warning 1s steps(2, end) infinite;
+}
+.breach-mode .bear-room {
+  background: radial-gradient(ellipse, #7b1019, #290a0d, #090909);
+}
+@keyframes warning {
+  0%, 100% { border-bottom-color: #ff101c; }
+  50% { border-bottom-color: #48090d; }
+}
+.hidden { display: none !important; }
+@media (max-width: 480px) {
+  main { padding: 12px 10px 35px; }
+  .logo { font-size: 18px; }
+  .header-right { font-size: 10px; }
+  section { padding: 15px 12px; }
+  .stats { gap: 4px; }
+  .stat strong { font-size: 11px; }
+  .stat small { font-size: 9px; }
+  .bear-room { height: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
+
 <body>
 <header>
-<h1>SCP FOUNDATION</h1>
-<p>SECURE · CONTAIN · PROTECT</p>
+  <div class="header-inner">
+    <div class="logo"><span>SCP</span> FOUNDATION</div>
+    <div class="header-right">
+      ARCHIVE TERMINAL<br>
+      ACCESS LEVEL: RESTRICTED
+    </div>
+  </div>
 </header>
-<nav>DATABASE / ANOMALIES / SCP-8374</nav>
+
 <main>
-<div class="warning"><strong>⚠ WARNING:</strong> This is a fictional, fan-made SCP file. Do not attempt to recreate its experiments.</div>
-<h2>Item #: SCP-8374</h2>
-<h3>THE IMAGINARY TEDDY BEAR</h3>
-<div class="classification">
-<div class="cell"><strong>OBJECT CLASS</strong>Euclid</div>
-<div class="cell"><strong>THREAT LEVEL</strong>Elevated</div>
-<div class="cell"><strong>STATUS</strong>Contained</div>
-</div>
-<div class="teddy" role="img" aria-label="Stylized brown teddy bear with glowing eyes">
-<div class="ear left"></div><div class="ear right"></div>
-<div class="head"><div class="eye left"></div><div class="eye right"></div><div class="muzzle"></div><div class="nose"></div></div>
-<div class="bodybear"></div>
-</div>
-<p class="caption">ARTIST'S IMPRESSION — SCP-8374</p>
-<h2>Special Containment Procedures</h2>
-<p>SCP-8374 must be stored in a locked containment locker when not under authorized observation. No person may wear the costume without written approval from the research director. Testing must stop immediately if a subject reports seeing unfamiliar figures or feeling unexplained physical contact.</p>
-<h2>Description</h2>
-<p>SCP-8374 is a brown teddy bear mascot costume with permanently open eyes. The costume appears ordinary when unoccupied. Its anomalous effects begin when a person wears it.</p>
-<p>After an initial period, the wearer experiences increasing fatigue and vivid hallucinations while remaining awake. Figures seen by the wearer may interact with them physically. Reported effects include unexplained impacts and injuries despite no visible source.</p>
-<p>Wearers also report intense burning sensations in their eyes. They describe difficulty blinking normally, as if the costume's permanently open eyes affect their own perception.</p>
-<h2>Discovery</h2>
-<p>SCP-8374 came to Foundation attention after an incident in which a person wearing the costume claimed that imaginary creatures were chasing and attacking them. Witnesses could not see the creatures, but the wearer showed signs of having experienced physical impacts.</p>
-<h2>Interview Log 8374-A</h2>
-<p><strong>Researcher:</strong> You understand that the figures may not be visible to anyone else?</p>
-<blockquote>“They're imaginary. I know that. But they can touch me.”</blockquote>
-<p><strong>Researcher:</strong> Why do you think you cannot escape them?</p>
-<blockquote>“Because you can't see them.”</blockquote>
-<h2>Current Status</h2>
-<p>SCP-8374 remains contained. Further testing requires approval.</p>
-<footer>
-SCP-8374 is an original fan-made concept and is not an official SCP Foundation entry. SCP Foundation is a collaborative fiction project.
-</footer>
+  <div class="notice">
+    ⚠ FAN-MADE FICTION — SCP-8374 is an original fan creation,
+    not an official SCP Foundation entry.
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">SECURE · CONTAIN · PROTECT</div>
+    <h1>SCP-8374</h1>
+    <div class="subtitle">The Imaginary Teddy Bear</div>
+
+    <div class="bear-room" role="img"
+      aria-label="A brown teddy bear with permanently open black eyes">
+      <div class="bear">
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="muzzle"><div class="nose"></div></div>
+      </div>
+    </div>
+
+    <p class="subtitle">"Some things should remain imaginary."</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <small>OBJECT CLASS</small>
+      <strong>EUCLID</strong>
+    </div>
+    <div class="stat">
+      <small>THREAT LEVEL</small>
+      <strong class="red">ELEVATED</strong>
+    </div>
+    <div class="stat">
+      <small>CONTAINMENT</small>
+      <strong id="containmentStatus" class="green">STABLE</strong>
+    </div>
+  </div>
+
+  <div class="tools">
+    <button id="clockButton">Show Archive Clock</button>
+    <button id="breachButton">Activate Breach Simulation</button>
+    <button id="soundButton">Transmission Log</button>
+  </div>
+
+  <div id="clockPanel" class="record hidden">
+    <div class="record-head">SITE CLOCK</div>
+    <div id="clock">Loading...</div>
+    <p class="subtitle">Local device time. This is not a real facility clock.</p>
+  </div>
+
+  <div id="breachPanel" class="notice hidden" role="status">
+    SIMULATION ONLY: A fictional containment breach has been declared.
+  </div>
+
+  <nav aria-label="Archive navigation">
+    <a href="#containment">Containment</a>
+    <a href="#description">Description</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#interview">Interview</a>
+    <a href="#incidents">Incidents</a>
+    <a href="#terminal">Terminal</a>
+  </nav>
+
+  <section id="search">
+    <h2><span>00</span> Archive Search</h2>
+    <p>Search for a word in the visible case file sections.</p>
+    <input id="searchInput" type="search"
+      placeholder="Try: teddy, interview, containment..."
+      aria-label="Search archive">
+    <p id="searchResult" aria-live="polite">Ready to search.</p>
+  </section>
+
+  <section id="containment" class="searchable">
+    <h2><span>01</span> Special Containment Procedures</h2>
+    <p>
+      SCP-8374 is stored in a locked, windowless containment chamber
+      at Site-██. Access requires authorization from designated staff.
+    </p>
+    <ul>
+      <li>Personnel must not wear SCP-8374.</li>
+      <li>Handling is restricted to authorized staff.</li>
+      <li>Unusual visual experiences must be reported immediately.</li>
+      <li>Testing requires approval from the project lead.</li>
+      <li>The object must remain under observation during approved tests.</li>
+    </ul>
+    <div class="alert">
+      <strong>WARNING:</strong> Never wear or modify the costume.
+      These procedures are part of a fictional story.
+    </div>
+  </section>
+
+  <section id="description" class="searchable">
+    <h2><span>02</span> Description</h2>
+    <p>
+      SCP-8374 is a brown teddy bear mascot costume of unknown origin.
+      Its eyes remain open regardless of the costume's position.
+    </p>
+    <p>
+      When worn, it causes increasing tiredness and vivid,
+      dreamlike visual experiences while the wearer is awake.
+    </p>
+    <p>
+      The wearer may see figures that appear real and seem capable
+      of touching or affecting them. Nearby observers cannot see
+      these figures.
+    </p>
+    <p>
+      Wearers also report a burning sensation around the eyes and
+      difficulty blinking normally. The cause remains unknown.
+    </p>
+    <div class="record">
+      <div class="record-head">RESEARCH NOTE 8374-D</div>
+      <p>
+        The reported phenomena are currently unexplained within
+        the fictional case file.
+      </p>
+    </div>
+  </section>
+
+  <section id="experiments" class="searchable">
+    <h2><span>03</span> Experiment Archive</h2>
+    <p>Tap a record to expand its contents.</p>
+
+    <details>
+      <summary>TEST 8374-A — Visual Inspection</summary>
+      <p><strong>Objective:</strong> Document the costume's appearance.</p>
+      <p><strong>Observation:</strong> The eyes appeared permanently open.</p>
+      <p><strong>Result:</strong> No visible mechanism was identified.</p>
+    </details>
+
+    <details>
+      <summary>TEST 8374-B — Room Observation</summary>
+      <p><strong>Objective:</strong> Observe the object in isolation.</p>
+      <p><strong>Observation:</strong> No independently verified movement
+        was recorded during the fictional test.</p>
+      <p><strong>Result:</strong> Further research required.</p>
+    </details>
+
+    <details>
+      <summary>TEST 8374-C — Report Analysis</summary>
+      <p><strong>Objective:</strong> Compare fictional witness reports.</p>
+      <p><strong>Observation:</strong> Reports describe tiredness and
+        vivid visual experiences after wearing the costume.</p>
+      <p><strong>Result:</strong> The mechanism remains unknown.</p>
+    </details>
+  </section>
+
+  <section id="interview" class="searchable">
+    <h2><span>04</span> Interview Transcript</h2>
+    <div class="record">
+      <div class="record-head">INTERVIEW 8374-1 // FICTIONAL</div>
+      <p><span class="speaker">RESEARCHER:</span>
+        When did you first notice something was wrong?</p>
+      <p><span class="speaker">SUBJECT:</span>
+        When I saw something that nobody else could see.</p>
+      <p><span class="speaker">RESEARCHER:</span>
+        Did it look like a dream?</p>
+      <p><span class="speaker">SUBJECT:</span>
+        No. I was awake. I knew I was awake.</p>
+      <p><span class="speaker">RESEARCHER:</span>
+        What frightened you the most?</p>
+      <p><span class="speaker">SUBJECT:</span>
+        <em>It knew I could see it.</em></p>
+    </div>
+  </section>
+
+  <section id="incidents" class="searchable">
+    <h2><span>05</span> Incident Timeline</h2>
+
+    <div class="record">
+      <div class="record-head">INCIDENT 8374-01</div>
+      <p><strong>Discovery:</strong> The unusual costume was recovered
+        following reports of strange experiences.</p>
+    </div>
+
+    <div class="record">
+      <div class="record-head">INCIDENT 8374-02</div>
+      <p><strong>Initial review:</strong> Investigators documented
+        the costume's unusual appearance.</p>
+    </div>
+
+    <div class="record">
+      <div class="record-head">INCIDENT 8374-03</div>
+      <p><strong>Current status:</strong> The object remains contained
+        in this fictional scenario.</p>
+    </div>
+  </section>
+
+  <section id="transmission" class="searchable">
+    <h2><span>06</span> Recovered Transmission</h2>
+    <div class="terminal">
+      <p>RECEIVING ARCHIVE...</p>
+      <p>ORIGIN: UNKNOWN</p>
+      <p>MESSAGE: "Is the room supposed to be empty?"</p>
+      <p>MESSAGE: "Why is the bear facing me?"</p>
+      <p>MESSAGE: "I thought you locked it away."</p>
+      <p>END OF TRANSMISSION.</p>
+    </div>
+    <p class="subtitle">Fictional transmission created for this fan-made page.</p>
+  </section>
+
+  <section id="terminal">
+    <h2><span>07</span> Archive Terminal</h2>
+    <p>Choose a command to display a fictional system message.</p>
+    <div class="tools">
+      <button data-command="status">STATUS</button>
+      <button data-command="object">OBJECT</button>
+      <button data-command="warning">WARNING</button>
+      <button data-command="clear">CLEAR</button>
+    </div>
+    <div id="terminalOutput" class="terminal" aria-live="polite">
+      <p>ARCHIVE READY.</p>
+      <p>Select a command above.</p>
+    </div>
+  </section>
+
+  <section id="status">
+    <h2><span>08</span> Current Status</h2>
+    <p>
+      SCP-8374 remains contained in the fictional case file.
+      Its reported anomalous effects have not been explained.
+    </p>
+    <div class="alert">
+      This website is a fan-made fictional project. All test logs,
+      interviews, and incident reports here are creative writing.
+    </div>
+  </section>
+
+  <footer>
+    SCP-8374 — THE IMAGINARY TEDDY BEAR<br>
+    Fan-made fictional archive · Not an official SCP entry<br>
+    SECURE · CONTAIN · PROTECT
+  </footer>
 </main>
+
+<script>
+"use strict";
+
+const clockButton = document.getElementById("clockButton");
+const clockPanel = document.getElementById("clockPanel");
+const clock = document.getElementById("clock");
+
+const breachButton = document.getElementById("breachButton");
+const breachPanel = document.getElementById("breachPanel");
+const containmentStatus = document.getElementById("containmentStatus");
+
+const soundButton = document.getElementById("soundButton");
+const transmission = document.getElementById("transmission");
+
+const searchInput = document.getElementById("searchInput");
+const searchResult = document.getElementById("searchResult");
+
+const terminalOutput = document.getElementById("terminalOutput");
+
+let breachActive = false;
+let clockActive = false;
+
+function updateClock() {
+  if (!clockActive) return;
+
+  const now = new Date();
+
+  clock.textContent = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+}
+
+clockButton.addEventListener("click", () => {
+  clockActive = !clockActive;
+  clockPanel.classList.toggle("hidden", !clockActive);
+
+  clockButton.textContent = clockActive
+    ? "Hide Archive Clock"
+    : "Show Archive Clock";
+
+  updateClock();
+});
+
+setInterval(updateClock, 1000);
+
+breachButton.addEventListener("click", () => {
+  breachActive = !breachActive;
+
+  document.body.classList.toggle("breach-mode", breachActive);
+  breachPanel.classList.toggle("hidden", !breachActive);
+
+  containmentStatus.textContent = breachActive ? "ALERT" : "STABLE";
+  containmentStatus.className = breachActive ? "red" : "green";
+
+  breachButton.textContent = breachActive
+    ? "End Breach Simulation"
+    : "Activate Breach Simulation";
+
+  breachPanel.textContent = breachActive
+    ? "SIMULATION ONLY: Fictional containment breach declared. No real alert has been sent."
+    : "SIMULATION ENDED: Fictional containment status restored.";
+});
+
+soundButton.addEventListener("click", () => {
+  transmission.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.trim().toLowerCase();
+  const sections = document.querySelectorAll(".searchable");
+  let matches = 0;
+
+  sections.forEach((section) => {
+    const content = section.textContent.toLowerCase();
+    const found = query === "" || content.includes(query);
+
+    section.classList.toggle("hidden", !found);
+
+    if (found) matches++;
+  });
+
+  searchResult.textContent = query === ""
+    ? "Ready to search."
+    : matches + " matching section(s) found.";
+});
+
+const commands = {
+  status: [
+    "SYSTEM STATUS: ONLINE",
+    "CONTAINMENT: STABLE",
+    "ARCHIVE: SCP-8374"
+  ],
+  object: [
+    "OBJECT: SCP-8374",
+    "DESIGNATION: THE IMAGINARY TEDDY BEAR",
+    "CLASSIFICATION: EUCLID"
+  ],
+  warning: [
+    "WARNING: FICTIONAL ANOMALY FILE",
+    "UNAUTHORIZED TESTING IS NOT PERMITTED",
+    "THIS TERMINAL IS A WEBSITE SIMULATION"
+  ]
+};
+
+document.querySelectorAll("[data-command]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const command = button.dataset.command;
+
+    if (command === "clear") {
+      terminalOutput.replaceChildren();
+      return;
+    }
+
+    terminalOutput.replaceChildren();
+
+    commands[command].forEach((line) => {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = "> " + line;
+      terminalOutput.appendChild(paragraph);
+    });
+  });
+});
+</script>
 </body>
 </html>
